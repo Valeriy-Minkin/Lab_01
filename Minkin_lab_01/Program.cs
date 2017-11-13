@@ -10,6 +10,11 @@ namespace Minkin_lab_01
     {
         static void Main(string[] args)
         {
+            MainLogic();
+        }
+
+        private static void MainLogic()
+        {
             int a = 0, b = 0, area = 0;
             ReadRectangleInfo(ref a, ref b);
             if (ValidateInput(a, b))
@@ -21,7 +26,17 @@ namespace Minkin_lab_01
             {
                 ShowError();
             }
-            Console.ReadKey();
+            TryAgain();
+        }
+
+        private static void TryAgain()
+        {
+            Console.Write("Try again? (y/n) ");
+            ConsoleKeyInfo key = Console.ReadKey();
+            if (key.KeyChar == 'y' || key.KeyChar == 'Y')
+            {
+                MainLogic();
+            }
         }
 
         private static void ShowResult(int area)
