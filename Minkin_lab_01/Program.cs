@@ -4,10 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minkin_lab_01
 {
     class Program
     {
+        struct Rectangle
+        {
+            public int a;
+            public int b;
+        }
+
         static void Main(string[] args)
         {
             MainLogic();
@@ -15,11 +20,12 @@ namespace Minkin_lab_01
 
         private static void MainLogic()
         {
-            int a = 0, b = 0, area = 0;
-            ReadRectangleInfo(ref a, ref b);
-            if (ValidateInput(a, b))
+            Rectangle rectangle = new Rectangle();
+            int area = 0;
+            ReadRectangleInfo(ref rectangle);
+            if (ValidateInput(rectangle))
             {
-                area = CalculateArea(a, b);
+                area = CalculateArea(rectangle);
                 ShowResult(area);
             }
             else
@@ -35,13 +41,14 @@ namespace Minkin_lab_01
             ConsoleKeyInfo key = Console.ReadKey();
             if (key.KeyChar == 'y' || key.KeyChar == 'Y')
             {
+                Console.WriteLine("");
                 MainLogic();
             }
         }
 
         private static void ShowResult(int area)
         {
-            Console.WriteLine("Area ={0} ", area);
+            Console.WriteLine("Area = {0} ", area);
         }
 
         private static void ShowError()
@@ -49,9 +56,9 @@ namespace Minkin_lab_01
             Console.WriteLine("Wrong data!");
         }
 
-        private static bool ValidateInput(int a, int b)
+        private static bool ValidateInput(Rectangle rectangle)
         {
-            return CheckSide(a) && CheckSide(b);
+            return CheckSide(rectangle.a) && CheckSide(rectangle.b);
         }
 
         private static bool CheckSide(int side)
@@ -59,15 +66,15 @@ namespace Minkin_lab_01
             return side > 0;
         }
 
-        private static int CalculateArea(int a, int b)
+        private static int CalculateArea(Rectangle rectangle)
         {
-            return a * b;
+            return rectangle.a * rectangle.b;
         }
 
-        private static void ReadRectangleInfo(ref int a, ref int b)
+        private static void ReadRectangleInfo(ref Rectangle rectangle)
         {
-            ReadRectangleSide(ref a);
-            ReadRectangleSide(ref b);
+            ReadRectangleSide(ref rectangle.a);
+            ReadRectangleSide(ref rectangle.b);
         }
 
         private static void ReadRectangleSide(ref int side)
