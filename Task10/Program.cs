@@ -50,7 +50,7 @@ namespace Task10
                 Console.WriteLine("");
             }
             Console.WriteLine("");
-            Console.WriteLine("Sum of honest positions elements is {0}", sum);
+            Console.WriteLine("Sum of honest positions elements = {0}", sum);
         }
 
         private static void GenerateArray(int[,] array)
